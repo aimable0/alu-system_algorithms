@@ -1,1 +1,2 @@
-# 0x02. C - Huffman coding
+HuffMan coding Projects.
+
