@@ -6,7 +6,7 @@
 #include "graphs.h"
 
 /**
- * dfs_traverse_rec - Recursively perform a depth-first traversal from a vertex.
+ * dfs_traverse_rec - Recursively perform a depth-first traversal.
  * @v: Current vertex being visited.
  * @visited: Array tracking which vertex indices have been visited.
  * @depth: Current traversal depth from the start vertex.
@@ -14,8 +14,9 @@
  *
  * Return: Maximum depth reached from this vertex.
  */
-static size_t dfs_traverse_rec(const vertex_t *v, bool *visited, size_t depth,
-							   void (*action)(const vertex_t *, size_t))
+static size_t dfs_traverse_rec
+(const vertex_t *v, bool *visited, size_t depth,
+void (*action)(const vertex_t *, size_t))
 {
 	edge_t *e;
 	size_t max_depth = depth;
