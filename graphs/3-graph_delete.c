@@ -6,9 +6,10 @@
  */
 void graph_delete(graph_t *graph)
 {
-	if (!graph)
-		return;
-	FREE(vertex_t, v, graph->vertices, free(v->content);
-	     FREE(edge_t, e, v->edges, NULL;););
-	free(graph);
+if (!graph)
+return;
+FREE(vertex_t, v, graph->vertices,
+free(v->content);
+FREE(edge_t, e, v->edges, NULL;););
+free(graph);
 }
