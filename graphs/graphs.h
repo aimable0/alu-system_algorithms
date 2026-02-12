@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <stdlib.h>
 /**
  * enum edge_type_e - Enumerates the different types of
  * connection between two vertices
@@ -61,6 +63,9 @@ typedef struct graph_s
     vertex_t    *vertices;
 } graph_t;
 
+
+
 graph_t *graph_create(void);
+vertex_t *graph_add_vertex(graph_t *graph, const char *str);
 
 
