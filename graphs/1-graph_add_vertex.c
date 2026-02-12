@@ -9,7 +9,9 @@
  */
 vertex_t *graph_add_vertex(graph_t *graph, const char *str)
 {
+    vertex_t *new;
     vertex_t *tail = graph->vertices;
+    
     while (tail)
     {
         if (strcmp(tail->content, str) == 0)
@@ -19,7 +21,7 @@ vertex_t *graph_add_vertex(graph_t *graph, const char *str)
         tail = tail->next;
     }
 
-    vertex_t *new = malloc(sizeof(vertex_t));
+    new = malloc(sizeof(vertex_t));
     if (!new)
     {
         perror("malloc");
