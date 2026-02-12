@@ -13,3 +13,6 @@
 // If either src or dest are not found in any vertex of graph, your function must fail, and there must be no leak
 // NOTE: We will use our own graph_create and graph_add_vertex functions during the correction, meaning that your files 0-graph_create.c and 1-graph_add_vertex.c WON’T be compiled.
 
+int graph_add_edge(graph_t *graph, const char *src, const char *dest, edge_type_t type) {
+    
+}

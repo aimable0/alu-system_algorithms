@@ -33,7 +33,7 @@ int main(void)
         !graph_add_vertex(graph, "Chicago") ||
         !graph_add_vertex(graph, "Houston") ||
         !graph_add_vertex(graph, "Las Vegas") ||
-        !graph_add_vertex(graph, "Boston"))
+        !graph_add_vertex(graph, NULL))
     {
         fprintf(stderr, "Failed to add vertex\n");
         return (EXIT_FAILURE);

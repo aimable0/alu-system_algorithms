@@ -9,9 +9,13 @@
  */
 vertex_t *graph_add_vertex(graph_t *graph, const char *str)
 {
+
     vertex_t *new;
     int str_size = 0;
     vertex_t *tail = graph->vertices;
+
+    if (!str)
+        return NULL;
 
     while (tail)
     {
@@ -32,16 +36,12 @@ vertex_t *graph_add_vertex(graph_t *graph, const char *str)
     new->index = graph->nb_vertices;
     graph->nb_vertices++;
 
-    if (str) {
-        str_size = strlen(str);
-        new->content = malloc(sizeof(char) * str_size);
-        if (!new->content) {
-            perror("malloc");
-            free(new);
-            return (NULL);
-        }
-    } else {
-        new->content = NULL;
+    str_size = strlen(str);
+    new->content = malloc(sizeof(char) * str_size);
+    if (!new->content) {
+        perror("malloc");
+        free(new);
+        return (NULL);
     }
 
     strncpy(new->content, str, str_size);
