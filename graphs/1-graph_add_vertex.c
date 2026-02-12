@@ -11,7 +11,8 @@ vertex_t *graph_add_vertex(graph_t *graph, const char *str)
 {
     vertex_t *new;
     vertex_t *tail = graph->vertices;
-    
+    int str_size;
+
     while (tail)
     {
         if (strcmp(tail->content, str) == 0)
@@ -31,13 +32,13 @@ vertex_t *graph_add_vertex(graph_t *graph, const char *str)
     new->index = graph->nb_vertices;
     graph->nb_vertices++;
 
-    int size = strlen(str);
-    new->content = malloc(sizeof(char) * size);
+    str_size = strlen(str);
+    new->content = malloc(sizeof(char) * str_size);
     if (!new->content) {
         perror("malloc");
         return (NULL);
     }
-    strncpy(new->content, str, size);
+    strncpy(new->content, str, str_size);
     new->nb_edges = 0;
     new->edges = NULL;
     new->next = NULL;
