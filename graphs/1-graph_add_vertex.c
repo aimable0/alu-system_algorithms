@@ -38,7 +38,7 @@ vertex_t *graph_add_vertex(graph_t *graph, const char *str)
     new->index = graph->nb_vertices;
     graph->nb_vertices++;
 
-    str_size = strlen(str);
+    str_size = strlen(str) + 1;
     new->content = malloc(sizeof(char) * str_size);
     if (!new->content) {
         perror("malloc");
