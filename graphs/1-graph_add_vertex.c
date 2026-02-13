@@ -1,4 +1,6 @@
 #include "graphs.h"
+#include <string.h>
+#include <stdlib.h>
 
 /**
  * graph_add_vertex
@@ -44,7 +46,7 @@ vertex_t *graph_add_vertex(graph_t *graph, const char *str)
         return (NULL);
     }
 
-    strncpy(new->content, str, str_size);
+    strcpy(new->content, str);
     new->nb_edges = 0;
     new->edges = NULL;
     new->next = NULL;
