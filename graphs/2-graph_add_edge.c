@@ -1,18 +1,80 @@
 #include "graphs.h"
-// rapWrite a function that adds an edge between two vertices to an existing graph
 
-// Prototype: int graph_add_edge(graph_t *graph, const char *src, const char *dest, edge_type_t type);
-// Where:
-// graph is a pointer to the graph to add the edge to
-// src is the string identifying the vertex to make the connection from
-// dest is the string identifying the vertex to connect to
-// type is the type of edge
-// UNIDIRECTIONAL: Only one edge is created connecting src to dest
-// BIDIRECTIONAL: Two edges are created, connecting src to dest AND dest to src.
-// Your function must return 1 on success, or 0 on failure. On failure, no edge must have be created, and there must be no memory leak.
-// If either src or dest are not found in any vertex of graph, your function must fail, and there must be no leak
-// NOTE: We will use our own graph_create and graph_add_vertex functions during the correction, meaning that your files 0-graph_create.c and 1-graph_add_vertex.c WON’T be compiled.
 
 int graph_add_edge(graph_t *graph, const char *src, const char *dest, edge_type_t type) {
-    
+    vertex_t *vertices_l = NULL;
+    vertex_t *ptr_src = NULL;
+    vertex_t *ptr_dest = NULL;
+
+    if (!graph) {
+        return 0;
+    }
+
+    // check if the src and dest are both in the graph.
+    vertices_l = graph->vertices;
+    while(vertices_l) {
+        if (strcmp(vertices_l->content, src) == 0) {
+            ptr_src = vertices_l;
+        }
+        else if (strcmp(vertices_l->content, dest) == 0) {
+            ptr_dest = vertices_l;
+        }
+        vertices_l = vertices_l->next;
+    }
+
+    if (ptr_src && ptr_dest) {
+
+        edge_t *edges = ptr_src->edges;
+        // edges is the pointer to the head node..
+        edge_t *edge = malloc(sizeof(edge_t));
+        if (!edge) {
+            perror("malloc failed");
+            return 0;
+        }
+        edge->dest = ptr_dest;
+        edge->next = NULL;
+
+        if (edges) {
+            while(edges) {
+                if (edges->next == NULL)
+                    break;
+                edges = edges->next;
+            }
+            edges->next = edge; /* add new edge to the list*/
+        }
+        else {
+            ptr_src->edges = edge;
+        }
+
+        ptr_src->nb_edges += 1;
+
+        if (type) {
+            edge_t *edges = ptr_dest->edges;
+            edge_t *edge = malloc(sizeof(edge_t));
+            if (!edge) {
+                perror("malloc failed");
+                return 0;
+            }
+            edge->dest = ptr_src;
+            edge->next = NULL;
+
+            if (edges) {
+                while(edges) {
+                    if (edges->next == NULL)
+                        break;
+                    edges = edges->next;
+                }
+                edges->next = edge; /* add new edge to the list*/
+            }
+            else {
+                ptr_dest->edges = edge;
+            }
+            ptr_dest->nb_edges += 1;
+        }
+
+        return 1; // success.
+    }
+    else {
+        return 0; // fail
+    }
 }

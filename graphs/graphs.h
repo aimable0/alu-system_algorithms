@@ -33,6 +33,7 @@ typedef struct edge_s
 } edge_t;
 
 
+
 /**
  * struct vertex_s - Node in the linked list of vertices in the adjacency list
  *
