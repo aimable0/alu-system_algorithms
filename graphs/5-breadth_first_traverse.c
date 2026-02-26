@@ -37,12 +37,13 @@ void enqueue(queue_t *q, vertex_t *x) {
 }
 
 vertex_t *dequeue(queue_t *q) {
+    vertex_t *x;
     if (is_empty(q)) {
         perror("underflow");
         exit(0);
     }
 
-    vertex_t *x = q->data[q->head];
+    x = q->data[q->head];
     if (q->head + 1 == q->max)
         q->head = 0;
     else q->head += 1;
