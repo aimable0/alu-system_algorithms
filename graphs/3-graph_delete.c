@@ -16,7 +16,6 @@ void graph_delete(graph_t *graph)
             edge_t *node = edges;
             edges = node->next;
             free(node);
-            edges = edges->next;
         }
         free(vertex->content);
         free(vertex);
