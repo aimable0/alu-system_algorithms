@@ -2,7 +2,6 @@
 
 void graph_delete(graph_t *graph) {
 
-    edge_t *edges;
     vertex_t *vertex;
 
     if (!graph)
