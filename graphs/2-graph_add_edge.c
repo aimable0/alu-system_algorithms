@@ -10,7 +10,6 @@ int graph_add_edge(graph_t *graph, const char *src, const char *dest, edge_type_
         return 0;
     }
 
-    // check if the src and dest are both in the graph.
     vertices_l = graph->vertices;
     while(vertices_l) {
         if (strcmp(vertices_l->content, src) == 0) {
@@ -25,7 +24,6 @@ int graph_add_edge(graph_t *graph, const char *src, const char *dest, edge_type_
     if (ptr_src && ptr_dest) {
 
         edge_t *edges = ptr_src->edges;
-        // edges is the pointer to the head node..
         edge_t *edge = malloc(sizeof(edge_t));
         if (!edge) {
             perror("malloc failed");
@@ -40,7 +38,8 @@ int graph_add_edge(graph_t *graph, const char *src, const char *dest, edge_type_
                     break;
                 edges = edges->next;
             }
-            edges->next = edge; /* add new edge to the list*/
+            /* add new edge to the list*/
+            edges->next = edge;
         }
         else {
             ptr_src->edges = edge;
@@ -49,6 +48,7 @@ int graph_add_edge(graph_t *graph, const char *src, const char *dest, edge_type_
         ptr_src->nb_edges += 1;
 
         if (type) {
+            /* we can reduce redudancy here .. */
             edge_t *edges = ptr_dest->edges;
             edge_t *edge = malloc(sizeof(edge_t));
             if (!edge) {
@@ -64,7 +64,7 @@ int graph_add_edge(graph_t *graph, const char *src, const char *dest, edge_type_
                         break;
                     edges = edges->next;
                 }
-                edges->next = edge; /* add new edge to the list*/
+                edges->next = edge;
             }
             else {
                 ptr_dest->edges = edge;
@@ -72,9 +72,9 @@ int graph_add_edge(graph_t *graph, const char *src, const char *dest, edge_type_
             ptr_dest->nb_edges += 1;
         }
 
-        return 1; // success.
+        return 1;
     }
     else {
-        return 0; // fail
+        return 0;
     }
 }
