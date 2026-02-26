@@ -9,10 +9,9 @@ void graph_delete(graph_t *graph) {
 
     vertex = graph->vertices;
     while(vertex) {
-
-        graph->vertices = vertex->next;
+        vertex_t *next = vertex->next;
         free(vertex);
-        vertex = graph->vertices;
+        vertex = next;
     }
     free(graph);
 }
