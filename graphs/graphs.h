@@ -38,7 +38,7 @@ typedef struct edge_s
  *
  * @index: Index of the vertex in the adjacency list.
  * @content: Custom data stored in the vertex (here, a string)
- * @nb_edges: Number of conenctions with other vertices in the graph
+ * @nb_edges: Number of connections with other vertices in the graph
  * @edges: Pointer to the head node of the linked list of edges
  * @next: Pointer to the next vertex in the adjacency linked list
  *   This pointer points to another vertex in the graph, but it
@@ -63,8 +63,20 @@ struct vertex_s
 typedef struct graph_s
 {
     size_t      nb_vertices;
+    size_t      nb_edges;
     vertex_t    *vertices;
+
 } graph_t;
+
+/*
+typedef struct graph_t
+{
+    int nb_vertices;
+    int nb_edges;
+    vertex_t *vertices[MAX_NODES];
+    adjacency_list *Adj[MAX_NODES];
+} graph_t;
+*/
 
 graph_t *graph_create(void);
 vertex_t *graph_add_vertex(graph_t *graph, const char *str);
