@@ -1,0 +1,37 @@
+// Pesudocode for queue operation
+
+Q.max = MAX
+Q.tail = 0
+Q.head = 0
+
+how do we handle WRAP-AROUND concept...
+
+ENQUEUE(Q, x)
+    if IS-FULL(Q)
+        error "Overflow"
+    else
+        Q[Q.tail] = x
+        if (Q.tail + 1 == Q.max)
+            Q.tail = 0
+        else Q.tail += 1
+
+DEQUEUE(Q)
+    if IS-EMPTY(Q)
+        error "Underflow"
+    else
+        x = Q[Q.head]
+        if (Q.head + 1 == Q.max)
+            Q.head = 0
+        else Q.head += 1
+        return x
+
+IS-FULL(Q)
+    if Q.head == Q.tail + 1
+        return True
+    return False
+
+IS-EMPTY(Q)
+    if Q.head == Q.tail
+        return True
+    return False
+

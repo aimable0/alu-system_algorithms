@@ -51,6 +51,8 @@ struct vertex_s
     char        *content;
     size_t      nb_edges;
     edge_t      *edges;
+    char        *color;
+    size_t      depth;
     struct vertex_s *next;
 };
 
@@ -84,3 +86,5 @@ vertex_t *graph_add_vertex(graph_t *graph, const char *str);
 void graph_display(const graph_t *graph);
 int graph_add_edge(graph_t *graph, const char *src, const char *dest, edge_type_t type);
 void graph_delete(graph_t *graph);
+size_t depth_first_traverse(const graph_t *graph, void (*action)(const vertex_t *v, size_t depth));
+size_t breadth_first_traverse(const graph_t *graph, void (*action)(const vertex_t *v, size_t depth));
