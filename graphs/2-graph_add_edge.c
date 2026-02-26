@@ -6,9 +6,12 @@ int graph_add_edge(graph_t *graph, const char *src, const char *dest, edge_type_
     vertex_t *ptr_src = NULL;
     vertex_t *ptr_dest = NULL;
 
-    if (!graph) {
+    if (!graph)
         return 0;
-    }
+    if (!src)
+        return 0;
+    if (!dest)
+        return 0;
 
     vertices_l = graph->vertices;
     while(vertices_l) {
