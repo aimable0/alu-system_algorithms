@@ -11,11 +11,6 @@ void graph_delete(graph_t *graph) {
     vertex = graph->vertices;
     while(vertex) {
         edges = vertex->edges;
-        while(edges) {
-            edge_t *node = edges;
-            edges = node->next;
-            free(node);
-        }
         graph->vertices = vertex->next;
         free(vertex);
         vertex = graph->vertices;
